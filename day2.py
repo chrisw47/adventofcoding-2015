@@ -29,11 +29,22 @@ def calculate_square_footage(dimensions: list):
     
     return surface_area + smallest
 
+def ribbon_and_bow(dimensions: list):
+
+    sorted_dims = sorted(dimensions)
+    ribbon = 2 * (sorted_dims[0] + sorted_dims[1])
+    bow = sorted_dims[0] * sorted_dims[1] * sorted_dims[2]
+
+    return ribbon + bow
+
 if __name__ == '__main__':
 
     pres_list = organize_presents(presents)
-    total = 0
+    total_wrap = 0
+    total_ribbon = 0
     for dim_list in pres_list:
-        total += calculate_square_footage(dim_list)
+        total_wrap += calculate_square_footage(dim_list)
+        total_ribbon += ribbon_and_bow(dim_list)
 
-    print(f'Total square feet of wrapping paper required: {total} sqft.')
+    print(f'Total square feet of wrapping paper required:\t{total_wrap} sqft.')
+    print(f'Total length (ft) of ribbon required:\t\t{total_ribbon} ft.')
